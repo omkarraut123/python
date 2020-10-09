@@ -1,32 +1,27 @@
-from abc import ABC, abstractmethod
- 
- 
-class AbstractClass(ABC):
-    def __init__(self, value):
-        self.value = value
-        super().__init__()
- 
-    @abstractmethod
-    def eat(self):
+import abc
+class My_abc():
+    __metaclass__ = abc.ABCMeta
+
+    @abc.abstractmethod
+    def set_value(self,val):
         pass
- 
- 
-class Parents(AbstractClass):
-    def eat(self):
-        return "Eat solid food " + str(self.value) + " times each day."
- 
- 
-class Babies(AbstractClass):
-    def eat(self):
-        return "Milk only " + str(self.value) + " times or more each day."
- 
- 
-food = 3
-adult = Parents(food)
-print('Adult')
-print(adult.eat())
- 
-infant = Babies(food)
-print('Infants')
-print(infant.eat())
- 
+    @abc.abstractmethod
+    def get_value(self):
+        pass
+class Myclass(My_abc):
+    def set_val(self, input):
+        self.val = input
+
+    def get_val(self):
+        print("\nCalling the get_val() method")
+        print("I'm part of the Abstract Methods defined in My_ABC_Class()")
+        return self.val
+
+    def hello(self):
+        print("\nCalling the hello() method")
+        print("I'm *not* part of the Abstract Methods defined in My_ABC_Class()")      
+my_class = Myclass()
+
+my_class.set_val(10)
+print(my_class.get_val())
+my_class.hello()
